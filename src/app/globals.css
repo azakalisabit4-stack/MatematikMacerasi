@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   MATEMATİK MACERASI — TASARIM SİSTEMİ
+   Açık, ferah, modern. Koyu arka plan KULLANILMAZ; kontrast koyu butonlar,
+   navigasyon ve kart başlıklarıyla sağlanır.
+   ========================================================================== */
+
+@theme {
+  --color-ink-50: #f5f7fb;
+  --color-ink-100: #e8edf6;
+  --color-ink-200: #cdd8ea;
+  --color-ink-300: #a3b5d3;
+  --color-ink-400: #7086b3;
+  --color-ink-500: #4c6394;
+  --color-ink-600: #384c78;
+  --color-ink-700: #2b3a5e;
+  --color-ink-800: #22304d;
+  --color-ink-900: #1a2540;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #d9e6ff;
+  --color-brand-200: #bcd3ff;
+  --color-brand-300: #8fb6ff;
+  --color-brand-400: #5b8ffb;
+  --color-brand-500: #3568f0;
+  --color-brand-600: #234ddb;
+  --color-brand-700: #1d3eb1;
+
+  --color-sun-50: #fffaeb;
+  --color-sun-100: #fff1c6;
+  --color-sun-200: #ffe288;
+  --color-sun-300: #ffcd4a;
+  --color-sun-400: #ffb820;
+  --color-sun-500: #f59e0b;
+  --color-sun-600: #d97706;
+
+  --color-mint-100: #d9fbe8;
+  --color-mint-200: #b0f3d1;
+  --color-mint-400: #34d399;
+  --color-mint-500: #10b981;
+  --color-mint-600: #059669;
+
+  --color-berry-100: #ffe4ef;
+  --color-berry-300: #ff9ec4;
+  --color-berry-500: #ec4899;
+  --color-berry-600: #db2777;
+
+  --color-grape-100: #ede9fe;
+  --color-grape-300: #c4b5fd;
+  --color-grape-500: #8b5cf6;
+  --color-grape-600: #7c3aed;
+
+  --color-coral-100: #ffe4e0;
+  --color-coral-400: #fb7185;
+  --color-coral-500: #ef4444;
+  --color-coral-600: #dc2626;
+
+  --font-display: "Baloo 2", "Nunito", system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(26 37 64 / 0.04), 0 8px 24px -12px rgb(26 37 64 / 0.18);
+  --shadow-pop: 0 10px 40px -12px rgb(26 37 64 / 0.28);
+
+  --radius-xl2: 1.25rem;
+}
+
+:root {
+  --page-bg: #f4f7fc;
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, #e6f0ff 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, #fff3d9 0%, transparent 55%),
+    var(--page-bg);
+  color: var(--color-ink-800);
+  font-family:
+    "Nunito", "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Arial, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ------------------------------------------------------------- BİLEŞENLER */
+
+@utility card {
+  background: #fff;
+  border: 1px solid var(--color-ink-100);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+@utility focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-brand-200);
+}
+
+/* ------------------------------------------------------------ ANİMASYONLAR */
+
+@keyframes mm-pop-in {
+  0% { transform: scale(0.86); opacity: 0; }
+  60% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes mm-float-up {
+  0% { transform: translateY(6px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-42px); opacity: 0; }
+}
+
+@keyframes mm-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-9px) rotate(-1deg); }
+  30% { transform: translateX(8px) rotate(1deg); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(5px); }
+  80% { transform: translateX(-2px); }
+}
+
+@keyframes mm-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes mm-drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(24px); }
+}
+
+@keyframes mm-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mm-sheen {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+@keyframes mm-confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(240px) rotate(540deg); opacity: 0; }
+}
+
+.anim-pop { animation: mm-pop-in 260ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+.anim-float { animation: mm-float-up 900ms ease-out both; }
+.anim-shake { animation: mm-shake 420ms ease-in-out both; }
+.anim-bob { animation: mm-bob 3s ease-in-out infinite; }
+.anim-drift { animation: mm-drift 9s ease-in-out infinite alternate; }
+.anim-spin-slow { animation: mm-spin-slow 18s linear infinite; }
+.anim-confetti { animation: mm-confetti-fall 1400ms ease-in forwards; }
+
+.flash-wrong {
+  position: relative;
+}
+.flash-wrong::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(239 68 68 / 0.22);
+  pointer-events: none;
+  animation: mm-red-flash 420ms ease-out both;
+}
+@keyframes mm-red-flash {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.flash-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(16 185 129 / 0.18);
+  pointer-events: none;
+  animation: mm-red-flash 380ms ease-out both;
+}
+
+/* --------------------------------------------------------------- KAYDIRMA */
+
+.scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-ink-200);
+  border-radius: 999px;
+}
+
+/* Mobilde güvenli alan */
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-pop, .anim-float, .anim-shake, .anim-bob, .anim-drift, .anim-spin-slow, .anim-confetti {
+    animation: none !important;
+  }
+}
